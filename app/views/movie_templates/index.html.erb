@@ -20,7 +20,7 @@
 
   <div>
     <label for="description_field">Description</label>
-    <input type="text" name="movie_description" id="description_field">
+    <textarea name="movie_description" id="description_field" rows="3"></textarea>
   </div>
 
   <div>
@@ -33,7 +33,9 @@
     <input type="text" name="movie_director_id" id="director_id_field">
   </div>
 
-<button>Create movie</button>
+  <button>
+    Create movie
+  </button>
 </form>
 
 <hr>
@@ -87,7 +89,12 @@
 
         <% the_director = matching_directors.at(0) %>
 
-        <%= the_director.name %>
+        <%if the_director == nil %>
+          Uh oh! We weren't able to find a director for this movie.
+        <% else %>
+          <%= the_director.name %>
+        <% end %>
+
       </td>
 
       <td>
