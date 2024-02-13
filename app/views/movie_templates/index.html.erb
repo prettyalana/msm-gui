@@ -2,6 +2,40 @@
   List of all movies
 </h1>
 
+<form action="/insert_movie_record" method="post">
+  <div>
+    <label for="title_field">Title</label>
+    <input type="text" name="movie_title" id="title_field">
+  </div>
+
+  <div>
+    <label for="year_field">Year</label>
+    <input type="text" name="movie_year" id="year_field">
+  </div>
+
+  <div>
+    <label for="duration_field">Duration</label>
+    <input type="text" name="movie_duration" id="duration_field">
+  </div>
+
+  <div>
+    <label for="description_field">Description</label>
+    <input type="text" name="movie_description" id="description_field">
+  </div>
+
+  <div>
+    <label for="image_field">Image</label>
+    <input type="text" name="movie_image" id="image_field">
+  </div>
+
+  <div>
+    <label for="director_id_field">Director ID</label>
+    <input type="text" name="movie_director_id" id="director_id_field">
+  </div>
+
+<button>Create movie</button>
+</form>
+
 <hr>
 
 <table border="1">
@@ -31,36 +65,36 @@
   </tr>
 
   <% @list_of_movies.each do |a_movie| %>
-  <tr>
-    <td>
-      <%= a_movie.id %>
-    </td>
+    <tr>
+      <td>
+        <%= a_movie.id %>
+      </td>
 
-    <td>
-      <img src="<%= a_movie.image %>" style="width:250px;">
-    </td>
+      <td>
+        <img src="<%= a_movie.image %>" style="width:250px;">
+      </td>
 
-    <td>
-      <%= a_movie.title %>
-    </td>
+      <td>
+        <%= a_movie.title %>
+      </td>
 
-    <td>
-      <%= a_movie.year %>
-    </td>
+      <td>
+        <%= a_movie.year %>
+      </td>
 
-    <td>
-      <% matching_directors = Director.where({ :id => a_movie.director_id }) %>
-      
-      <% the_director = matching_directors.at(0) %>
+      <td>
+        <% matching_directors = Director.where({ :id => a_movie.director_id }) %>
 
-      <%= the_director.name %>
-    </td>
+        <% the_director = matching_directors.at(0) %>
 
-    <td>
-      <a href="/movies/<%= a_movie.id %>">
-        Show details
-      </a>
-    </td>
-  </tr>
+        <%= the_director.name %>
+      </td>
+
+      <td>
+        <a href="/movies/<%= a_movie.id %>">
+          Show details
+        </a>
+      </td>
+    </tr>
   <% end %>
 </table>
